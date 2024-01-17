@@ -12,8 +12,10 @@ function App() {
   const [score, setScore] = useState(0);
   const [bestScore, setBestScore] = useState(0);
   const [end, setEnd] = useState(false);
+  const [restart, setRestart] = useState(true);
 
     useEffect(() => {
+      if (restart) {
         const fetchData = async () => {
             try {
                 const result = await getCards();
@@ -23,7 +25,9 @@ function App() {
             }
         } 
         fetchData();
-    }, []);
+        setRestart(false)
+      }
+    }, [restart]);
 
   // Update best score everytime score updates
     useEffect(() => {
@@ -51,13 +55,19 @@ function App() {
         else setEnd(true)
     }
 
+    const restartHandler = () => {
+      setRestart(true);
+      setEnd(false);
+      setScore(0);
+    }
+
 
   return (
     <main>
     <Scores score={score} bestScore={bestScore}/>
     <Cards pokemonData={pokemonData} clickHandle={clickHandle}  
             ended={end}/>
-    <Gameend ended={end}/>
+    <Gameend ended={end} restartHandler={restartHandler}/>
     </main>
   )
 }
