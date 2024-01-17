@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-import './App.css'
 import Scores from './components/Scores'
 import Cards from './components/Cards'
 import getCards from './features/api'
@@ -67,7 +66,7 @@ function App() {
     <Scores score={score} bestScore={bestScore}/>
     <Cards pokemonData={pokemonData} clickHandle={clickHandle}  
             ended={end}/>
-    <Gameend ended={end} restartHandler={restartHandler}/>
+    <Gameend ended={end} restartHandler={restartHandler} score={score}/>
     </main>
   )
 }

@@ -4,7 +4,7 @@ import getCards from "../features/api";
 export default function Cards({pokemonData, clickHandle, ended}) {
 
 if (pokemonData[0] && !ended)    return (
-        <div>
+        <div className="cardsContainer">
           {pokemonData.map((pokemon) => (
             <div key={pokemon.name} onClick={() => clickHandle(pokemon.name)}>
               <p>{pokemon.name}</p>
@@ -15,6 +15,6 @@ if (pokemonData[0] && !ended)    return (
       )
 
     else if (!pokemonData[0])return (
-        <div>Loading</div>
+        <div className="loading">Loading</div>
     )
           }
