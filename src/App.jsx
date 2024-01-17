@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Scores from "./components/Scores";
 import Cards from "./components/Cards";
-import getCards from "./features/api.js";
+import getCards from "./features/api";
 import Gameend from "./components/Gameend";
 
 function App() {
