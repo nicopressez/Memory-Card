@@ -11,7 +11,7 @@ for (let i = 0; i < pokemonsToFetch.length; i++) {
     const cards = await response.json();
     const pokemonName = cards.name
     const pokemonImg = cards.sprites.front_default
-    allPokemons.push({name: pokemonName, img:pokemonImg})
+    allPokemons.push({name: pokemonName, img:pokemonImg, clicked:false})
 }
     return allPokemons
 }
