@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import getCards from "../features/api";
 
-export default function Cards({pokemonData, clickHandle}) {
+export default function Cards({pokemonData, clickHandle, ended}) {
 
-if (pokemonData[0])    return (
+if (pokemonData[0] && !ended)    return (
         <div>
           {pokemonData.map((pokemon) => (
             <div key={pokemon.name} onClick={() => clickHandle(pokemon.name)}>
@@ -14,7 +14,7 @@ if (pokemonData[0])    return (
         </div>
       )
 
-    return (
+    else if (!pokemonData[0])return (
         <div>Loading</div>
     )
           }

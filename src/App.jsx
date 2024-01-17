@@ -3,12 +3,15 @@ import './App.css'
 import Scores from './components/Scores'
 import Cards from './components/Cards'
 import getCards from './features/api'
+import Gameend from './components/Gameend'
 
 
 function App() {
 
   const [pokemonData, setPokemonData] = useState([]);
   const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
+  const [end, setEnd] = useState(false);
 
     useEffect(() => {
         const fetchData = async () => {
@@ -21,6 +24,11 @@ function App() {
         } 
         fetchData();
     }, []);
+
+  // Update best score everytime score updates
+    useEffect(() => {
+      if (score > bestScore)setBestScore(score);
+    }, [score, bestScore])
 
     const shuffleCards = (array) => {
         let copy = array.slice(0);
@@ -40,16 +48,16 @@ function App() {
         setScore(score + 1)
         setPokemonData(shuffleCards(pokemonData));}
 
-      
-
+        else setEnd(true)
     }
 
 
   return (
     <main>
-    <Scores score={score}/>
-    <Cards pokemonData={pokemonData} clickHandle={clickHandle} 
-            />
+    <Scores score={score} bestScore={bestScore}/>
+    <Cards pokemonData={pokemonData} clickHandle={clickHandle}  
+            ended={end}/>
+    <Gameend ended={end}/>
     </main>
   )
 }
